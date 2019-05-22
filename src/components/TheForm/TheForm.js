@@ -27,13 +27,13 @@ const RawForm = ({ values, errors, touched, isSubmitting }) => (
       <ErrorMessage name="heardOfUs" component="p" />
     </div>
     <br />
-    {values.heardOfUs === 'other' && 
-    <div>
+    {values.heardOfUs === 'other' && (
+      <div>
         <label>Tell us more about how you heard of us:</label>
         <br />
         <Field type="text" name="heardOfUsDetails" id="heardOfUsDetails" />
       </div>
-    }
+    )}
     <br />
     <label>First time here?</label>
     <div name="first time">
@@ -70,17 +70,12 @@ const RawForm = ({ values, errors, touched, isSubmitting }) => (
 );
 
 const TheForm = withFormik({
-  mapPropsToValues({
-    name,
-    email,
-    heardOfUs,
-    firstTime,
-  }) {
+  mapPropsToValues({ name, email, heardOfUs, firstTime }) {
     return {
       name: name || '',
       email: email || '',
       heardOfUs: heardOfUs || '',
-      firstTime: firstTime || true,
+      firstTime: firstTime || true
     };
   },
   validationSchema: yup.object().shape({

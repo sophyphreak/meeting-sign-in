@@ -33,7 +33,9 @@
     "heroku-postbuild": "gatsby build"
   },
   "devDependencies": {
-    "prettier": "^1.15.2"
+    "husky": "^2.3.0",
+    "prettier": "1.17.1",
+    "pretty-quick": "^1.11.0"
   },
   "repository": {
     "type": "git",
@@ -41,5 +43,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
