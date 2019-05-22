@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Survey Form`,
-    description: `A Survey Form in Gatsby`,
+    title: `Kadampa Sign in`,
+    description: `A sign in sheet for Kadampa meditation center in Houston`,
     author: `Andrew Horn`,
   },
 
