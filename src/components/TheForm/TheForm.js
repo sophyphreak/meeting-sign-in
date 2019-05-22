@@ -61,6 +61,12 @@ const RawForm = ({ values, errors, touched, isSubmitting }) => (
       </div>
     </div>
     <br />
+    <label>Amount you paid:</label>
+    <div>
+      $ <Field type="number" name="amountPaid" id="amount-paid" />
+      <ErrorMessage name="amountPaid" component="p" />
+    </div>
+    <br />
     <div>
       <button type="submit" id="submit" disabled={isSubmitting}>
         Submit
@@ -70,12 +76,13 @@ const RawForm = ({ values, errors, touched, isSubmitting }) => (
 );
 
 const TheForm = withFormik({
-  mapPropsToValues({ name, email, heardOfUs, firstTime }) {
+  mapPropsToValues({ name, email, heardOfUs, firstTime, amountPaid }) {
     return {
       name: name || '',
       email: email || '',
       heardOfUs: heardOfUs || '',
-      firstTime: firstTime || true
+      firstTime: firstTime || true,
+      amountPaid: amountPaid || ''
     };
   },
   validationSchema: yup.object().shape({
@@ -84,7 +91,11 @@ const TheForm = withFormik({
       .string()
       .email('email not valid')
       .required('email is required'),
-    heardOfUs: yup.string().required('we would like to know :)')
+    heardOfUs: yup.string().required('we would like to know :)'),
+    amountPaid: yup
+      .number('must be a number')
+      .required('how much did you pay?')
+      .positive()
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
     setTimeout(() => {
