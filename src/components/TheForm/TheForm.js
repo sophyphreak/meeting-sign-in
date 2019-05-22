@@ -16,15 +16,49 @@ const RawForm = ({ values, errors, touched, isSubmitting }) => (
       <ErrorMessage name="email" component="p" />
     </div>
     <br />
-    <div>
-      <Field component="select" name="heardOfUs" id="heardOfUs">
-        <option value="">How did you heard of us?</option>
-        <option value="friend">friend</option>
-        <option value="website">website</option>
-        <option value="meetup.com">meetup.com</option>
-        <option value="other">other</option>
-      </Field>
-      <ErrorMessage name="heardOfUs" component="p" />
+    <label>How did you hear of us?</label>
+    <div name="heardOfUs">
+      <div>
+        <label>
+          <Field
+            type="radio"
+            value="friend"
+            checked={values.heardOfUs === 'friend'}
+          />
+          friend
+        </label>
+      </div>
+      <div>
+        <label>
+          <Field
+            type="radio"
+            value="website"
+            checked={values.heardOfUs === 'website'}
+          />
+          website
+        </label>
+      </div>
+      <div>
+        <label>
+          <Field
+            type="radio"
+            value="meetup.com"
+            checked={values.heardOfUs === 'meetup.com'}
+          />
+          meetup.com
+        </label>
+      </div>
+      <div>
+        <label>
+          <Field
+            type="radio"
+            value="other"
+            checked={values.heardOfUs === 'other'}
+          />
+          other
+        </label>
+        <ErrorMessage name="heardOfUs" component="p" />
+      </div>
     </div>
     <br />
     {values.heardOfUs === 'other' && (
@@ -39,23 +73,13 @@ const RawForm = ({ values, errors, touched, isSubmitting }) => (
     <div name="first time">
       <div>
         <label>
-          <Field
-            type="radio"
-            name="first-time"
-            value="yes"
-            checked={values.firstTime === true}
-          />
+          <Field type="radio" value="yes" checked={values.firstTime === true} />
           yes
         </label>
       </div>
       <div>
         <label>
-          <Field
-            type="radio"
-            name="radio"
-            value="no"
-            checked={values.firstTime === false}
-          />
+          <Field type="radio" value="no" checked={values.firstTime === false} />
           no
         </label>
       </div>
@@ -80,7 +104,7 @@ const TheForm = withFormik({
     return {
       name: name || '',
       email: email || '',
-      heardOfUs: heardOfUs || '',
+      heardOfUs: heardOfUs || 'friend',
       firstTime: firstTime || true,
       amountPaid: amountPaid || ''
     };
